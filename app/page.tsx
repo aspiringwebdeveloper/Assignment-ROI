@@ -5,6 +5,7 @@ import { useCallback, useMemo, useState } from "react"
 import { ROIForm, type ROIInputs } from "@/components/roi-form"
 import { ResultsCard, type SimulationResults } from "@/components/results-card"
 import { ScenariosPanel } from "@/components/scenarios-panel"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const postSimulate = async (_key: string, payload: ROIInputs) => {
   const res = await fetch("/api/simulate", {
@@ -79,9 +80,12 @@ export default function Page() {
 
   return (
     <main className="container mx-auto p-4 md:p-6">
-      <header className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-semibold text-balance">Invoicing ROI Simulator</h1>
-        <p className="text-muted-foreground">Estimate savings, payback, and ROI when automating invoice processing.</p>
+      <header className="mb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-semibold text-balance">Invoicing ROI Simulator</h1>
+          <p className="text-muted-foreground">Estimate savings, payback, and ROI when automating invoice processing.</p>
+        </div>
+        <ThemeToggle />
       </header>
 
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
