@@ -35,22 +35,30 @@ export function ScenariosPanel({
     if (!currentScenario?.inputs || !currentScenario?.results) {
       return alert("Please run a simulation first.")
     }
-    const res = await fetch("/api/report/generate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, scenario: currentScenario }),
-    })
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}))
-      return alert(err?.error || "Failed to generate report.")
+    try {
+      const res = await fetch("/api/report/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, scenario: currentScenario }),
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        return alert(err?.error || "Failed to generate report.")
+      }
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = `roi-report-${Date.now()}.html`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+      alert("Report downloaded successfully!")
+    } catch (error) {
+      alert("Failed to download report. Please try again.")
+      console.error("Download error:", error)
     }
-    const blob = await res.blob()
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = `roi-report-${Date.now()}.html`
-    a.click()
-    URL.revokeObjectURL(url)
   }
 
   return (

@@ -42,20 +42,20 @@ export async function POST(req: Request) {
           <div class="label">Invoices/Month</div><div class="value">${inputs.monthly_invoice_volume}</div>
           <div class="label">AP Staff</div><div class="value">${inputs.num_ap_staff}</div>
           <div class="label">Hours/Invoice</div><div class="value">${inputs.avg_hours_per_invoice}</div>
-          <div class="label">Hourly Wage</div><div class="value">$${inputs.hourly_wage}</div>
+          <div class="label">Hourly Wage</div><div class="value">₹${inputs.hourly_wage}</div>
           <div class="label">Manual Error Rate</div><div class="value">${inputs.error_rate_manual}</div>
-          <div class="label">Error Cost</div><div class="value">$${inputs.error_cost}</div>
+          <div class="label">Error Cost</div><div class="value">₹${inputs.error_cost}</div>
           <div class="label">Horizon (months)</div><div class="value">${inputs.time_horizon_months}</div>
-          <div class="label">One-time Cost</div><div class="value">$${inputs.one_time_implementation_cost || 0}</div>
+          <div class="label">One-time Cost</div><div class="value">₹${inputs.one_time_implementation_cost || 0}</div>
         </div>
       </div>
 
       <div class="card">
         <h2>Results</h2>
         <div class="grid">
-          <div class="label">Monthly Savings</div><div class="value">$${results.monthly_savings.toFixed(2)}</div>
-          <div class="label">Cumulative Savings</div><div class="value">$${results.cumulative_savings.toFixed(2)}</div>
-          <div class="label">Net Savings</div><div class="value">$${results.net_savings.toFixed(2)}</div>
+          <div class="label">Monthly Savings</div><div class="value">₹${results.monthly_savings.toFixed(0)}</div>
+          <div class="label">Cumulative Savings</div><div class="value">₹${results.cumulative_savings.toFixed(0)}</div>
+          <div class="label">Net Savings</div><div class="value">₹${results.net_savings.toFixed(0)}</div>
           <div class="label">Payback (months)</div><div class="value">${Number.isFinite(results.payback_months) ? results.payback_months.toFixed(2) : "N/A"}</div>
           <div class="label">ROI (%)</div><div class="value">${results.roi_percentage.toFixed(2)}%</div>
         </div>

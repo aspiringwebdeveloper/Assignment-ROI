@@ -93,7 +93,7 @@ export function ROIForm({
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="hourly_wage">Hourly Wage ($)</Label>
+            <Label htmlFor="hourly_wage">Hourly Wage (₹)</Label>
             <Input
               id="hourly_wage"
               type="number"
@@ -115,7 +115,7 @@ export function ROIForm({
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="error_cost">Error Fix Cost ($)</Label>
+            <Label htmlFor="error_cost">Error Fix Cost (₹)</Label>
             <Input
               id="error_cost"
               type="number"
@@ -137,7 +137,7 @@ export function ROIForm({
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="one_time_implementation_cost">One-time Cost ($)</Label>
+            <Label htmlFor="one_time_implementation_cost">One-time Cost (₹)</Label>
             <Input
               id="one_time_implementation_cost"
               type="number"

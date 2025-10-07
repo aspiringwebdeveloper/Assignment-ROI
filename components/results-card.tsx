@@ -11,10 +11,10 @@ export type SimulationResults = {
 }
 
 function fmtMoney(n: number) {
-  return new Intl.NumberFormat(undefined, {
+  return new Intl.NumberFormat('en-IN', {
     style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 2,
+    currency: "INR",
+    maximumFractionDigits: 0,
   }).format(n)
 }
 
@@ -53,8 +53,8 @@ export function ResultsCard({
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-md border p-4">
-      <div className="text-sm text-muted-foreground">{label}</div>
-      <div className="text-xl font-semibold">{value}</div>
+      <div className="text-sm text-muted-foreground mb-1">{label}</div>
+      <div className="text-lg font-semibold break-words">{value}</div>
     </div>
   )
 }
