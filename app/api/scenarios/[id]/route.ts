@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server"
 import { deleteScenario, getScenario } from "@/lib/db"
 
-type Params = { params: { id: string } }
+type Params = { params: Promise<{ id: string }> }
 
 export async function GET(_req: Request, { params }: Params) {
-  const rec = await getScenario(params.id)
+  const { id } = await params
+  const rec = await getScenario(id)
   if (!rec) {
     return NextResponse.json({ error: "Not found" }, { status: 404 })
   }
@@ -12,6 +13,7 @@ export async function GET(_req: Request, { params }: Params) {
 }
 
 export async function DELETE(_req: Request, { params }: Params) {
-  const ok = await deleteScenario(params.id)
+  const { id } = await params
+  const ok = await deleteScenario(id)
   return NextResponse.json({ deleted: ok })
 }
