@@ -56,25 +56,40 @@ This application helps businesses evaluate the financial impact of automating th
 ### Prerequisites
 
 - Node.js 18+ 
-- pnpm (recommended) or npm
+- npm or pnpm
+- MongoDB Atlas account (free tier) - [Sign up here](https://www.mongodb.com/cloud/atlas/register)
 
 ### Installation
 
 ```bash
-# Install dependencies
-pnpm install
+# 1. Install dependencies
+npm install
 
-# Run development server
-pnpm dev
+# 2. Set up environment variables
+# Create a .env.local file in the root directory
+# Add your MongoDB connection string:
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority
 
-# Build for production
-pnpm build
+# 3. Run development server
+npm run dev
 
-# Start production server
-pnpm start
+# 4. Build for production
+npm run build
+
+# 5. Start production server
+npm start
 ```
 
 The application will be available at `http://localhost:3000`
+
+### MongoDB Setup
+
+1. **Create MongoDB Atlas Account**: Visit [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+2. **Create a Cluster**: Choose the free tier (M0)
+3. **Create Database User**: Set username and password
+4. **Whitelist IP**: Add `0.0.0.0/0` (allow from anywhere) or your specific IP
+5. **Get Connection String**: Click "Connect" → "Connect your application" → Copy the connection string
+6. **Add to .env.local**: Replace `<password>` with your database user password
 
 ## 📊 How It Works
 
@@ -220,7 +235,10 @@ Generate downloadable HTML report.
 
 ## 💾 Data Storage
 
-Scenarios are persisted in `data/scenarios.json` as a JSON array. The file is auto-created on first write.
+Scenarios are persisted in **MongoDB Atlas** cloud database for reliable, scalable storage that works across deployments.
+
+**Database**: `roi_simulator`  
+**Collection**: `scenarios`
 
 **Schema:**
 ```typescript
@@ -233,6 +251,12 @@ Scenarios are persisted in `data/scenarios.json` as a JSON array. The file is au
   updatedAt: string       // ISO timestamp
 }
 ```
+
+**Benefits:**
+- ✅ Persistent across deployments
+- ✅ Supports multiple users
+- ✅ Works on Vercel/Netlify
+- ✅ Free tier available (512MB)
 
 ## 🎨 UI Components
 
